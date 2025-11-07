@@ -1,0 +1,9 @@
+services:
+  prompt-service:
+    build:
+      context: .
+      dockerfile: ./prompt/deployment/Dockerfile
+    env_file:
+      - ./prompt/.env
+    ports:
+      - "8000:8000"
