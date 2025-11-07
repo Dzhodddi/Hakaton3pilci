@@ -7,3 +7,12 @@ services:
       - ./prompt/.env
     ports:
       - "8000:8000"
+
+  oauth:
+    build:
+      context: ./oauth
+      dockerfile: ./Dockerfile
+    env_file:
+      - ./oauth/.env
+    ports:
+      - "3000:3000"

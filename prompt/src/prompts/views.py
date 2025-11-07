@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Body, Depends, status
 
-from src.prompts.schemas import PromptResponse
+from src.prompts.schemas import PromptResponse, LongPromptSchema
 from src.prompts.service import PromptService
 from src.service_provider import ServiceProvider
 
@@ -25,7 +25,8 @@ async def short_cv_prompt(
     return response
 
 
-# @router.get('/long')
-# async def long_cv_prompt(
-#
-# )
+@router.post('/long')
+async def long_cv_prompt(
+    payload: LongPromptSchema,
+):
+    return payload

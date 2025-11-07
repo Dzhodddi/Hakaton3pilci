@@ -30,7 +30,8 @@ class PromptService():
         try:
             response = self._model.generate_content(prompt)
             data = json.loads(response.text.replace("`", '').replace("json", '').removeprefix("\n"))
-            return data, None
+            valid_model = PromptResponse.model_validate(data)
+            return valid_model, None
         except Exception:
             return None, HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
