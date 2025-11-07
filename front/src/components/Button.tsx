@@ -1,13 +1,3 @@
-
-export function PromptInput({ placeholder }: { placeholder: string }) {
-    return (
-        <>
-            <input></input>
-            <p>{ placeholder }</p>
-        </>
-    );
-}
-
 type Button = {
     placeholder: string;
     onClick: () => void;
