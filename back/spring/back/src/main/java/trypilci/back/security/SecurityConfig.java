@@ -16,15 +16,10 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/google/callback", "/h2-console/**").permitAll()
+                        .requestMatchers("/api/health/**", "/h2-console/**").permitAll()
                         .anyRequest().authenticated()
                 )
-//                .oauth2ResourceServer(oauth2 -> oauth2
-//                        .jwt(jwt -> {})  // Spring auto-configures JwtDecoder via issuer-uri
-//                )
                 .addFilterBefore(googleTokenFilter, UsernamePasswordAuthenticationFilter.class);
-
-//        http.headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
 
         return http.build();
     }

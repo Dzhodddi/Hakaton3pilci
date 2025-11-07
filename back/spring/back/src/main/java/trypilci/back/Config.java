@@ -13,7 +13,7 @@ public class Config {
     CommandLineRunner dbPopulator(UserRepository userRepository) {
         return args -> {
           User user = new User();
-          user.setEmail("user1@domain");
+          user.setEmail("ivansosniuk@gmail.com");
           user.setFirstName("John");
           user.setLastName("Doe");
           userRepository.save(user);
