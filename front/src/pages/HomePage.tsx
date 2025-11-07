@@ -30,10 +30,12 @@ export default function HomePage() {
     navigate('/newprofile');
   }
 
+  let isLogged = false;
+
   return (
     <>
       <section>
-        <Header handler={handlePopup} />
+        <Header handler={handlePopup} isLogged={isLogged}/>
         <div className="base">
           <h1>
             Elevate your job experience with *company*

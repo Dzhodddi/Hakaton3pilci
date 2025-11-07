@@ -24,3 +24,10 @@
   align-items: center;
   height: 100%;
 }
+
+.steps {
+  display: flex;
+}
+.steps > div {
+  margin-left: 12px;
+}
