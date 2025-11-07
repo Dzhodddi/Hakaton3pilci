@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Body, Depends, status
+from starlette.responses import HTMLResponse
 
 from src.prompts.schemas import PromptResponse, LongPromptSchema
 from src.prompts.service import PromptService
@@ -25,8 +26,15 @@ async def short_cv_prompt(
     return response
 
 
-@router.post('/long')
+@router.post(
+    '/long',
+    status_code=status.HTTP_200_OK
+)
 async def long_cv_prompt(
     payload: LongPromptSchema,
+    prompt_service: PromptService = Depends(ServiceProvider.get_prompt_service),
 ):
-    return payload
+    response, err = prompt_service.generate_long_prompt(payload)
+    if err:
+        raise err
+    return response
