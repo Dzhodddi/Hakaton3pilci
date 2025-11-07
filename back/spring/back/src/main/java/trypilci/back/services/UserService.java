@@ -18,30 +18,18 @@ public class UserService {
     @Autowired
     private final UserRepository userRepository;
 
-//    public List<User> getAll() {
-//        return userRepository.findAll();
-//    }
 
     public User findByEmail(String email) {
         return userRepository.findById(email).orElseThrow(()->new ResourceNotFoundException("User not found"));
     }
 
-    public User saveUser(UserView user) {
-//        if (userRepository.existsById(user.getEmail())) {
-//            return userRepository.findById(user.getEmail()).get();
-//        }
-        return userRepository.save(parseView(new User(), user.getEmail(), user));
+    public User saveUser(UserView userView) {
+        Optional<User> user = userRepository.findById(userView.getEmail());
+        return userRepository.save(parseView(user.isPresent()?user.get():new User(), userView.getEmail(), userView));
     }
 
     public User updateUser(String email, UserView view) {
-//        return userRepository.findById(email)
-//                .map(existing -> {
-//                    existing.setEmail(user.getEmail());
-//                    return userRepository.save(existing);
-//                })
-//                .orElseThrow(() -> new ResourceNotFoundException("User not found: " + email));
         Optional<User> user = userRepository.findById(email);
-//        if (!userRepository.existsById(email)) {
         if(user.isEmpty()) {
             throw new RuntimeException("User not found: " + email);
         }
@@ -57,7 +45,7 @@ public class UserService {
 
     private User parseView(User user, String email, UserView userView) {
         if (userView == null) return null;
-        user.setEmail(email);
+        if (user.getEmail()==null)user.setEmail(email);
         if(userView.getFirstName()!=null)user.setFirstName(userView.getFirstName());
         if(userView.getLastName()!=null)user.setLastName(userView.getLastName());
         if(userView.getOccupation()!=null)user.setOccupation(userView.getOccupation());
