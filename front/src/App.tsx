@@ -1,9 +1,23 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import './App.css'
 
 import { Button, PromptInput } from './Components'
 
 function App() {
+
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  function handlePopup() {
+    if (dialogRef.current) {
+      dialogRef.current.showModal();
+    }
+  }
+
+  function handleClosePopup() {
+    if (dialogRef.current) {
+      dialogRef.current.close();
+    }
+  }
 
   return (
     <>
@@ -11,7 +25,7 @@ function App() {
         <div className="header">
           <p>Created for workers by workers</p>
           <img className="logo" src="./logo.png"></img>
-          <button>Log in</button>
+          <Button placeholder="Log in" onClick={handlePopup} />
         </div>
         <div className="base">
           <h1>
@@ -23,11 +37,24 @@ function App() {
           <p>
             Say no more to frustration over writing a new CV.
           </p>
-          <Button placeholder="Generate" />
+          <Button placeholder="Generate" onClick={empty} />
         </div>
+      </section>
+      <section>
+        <dialog className="login-popup" ref={dialogRef}>
+          <Button placeholder="X" onClick={handleClosePopup} />
+          <h3>
+            Log in using your Google account
+          </h3>
+          <Button placeholder="Google OAuth" onClick={empty} />
+        </dialog>
       </section>
     </>
   )
+}
+
+function empty() {
+  console.log("empty");
 }
 
 export default App

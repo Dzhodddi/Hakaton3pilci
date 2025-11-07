@@ -1,8 +1,5 @@
-type ComponentType = {
-    placeholder: string;
-}
 
-export function PromptInput({ placeholder }: ComponentType) {
+export function PromptInput({ placeholder }: { placeholder: string }) {
     return (
         <>
             <input></input>
@@ -11,10 +8,15 @@ export function PromptInput({ placeholder }: ComponentType) {
     );
 }
 
-export function Button({ placeholder }: ComponentType) {
+type Button = {
+    placeholder: string;
+    onClick: () => void;
+}
+
+export function Button({ placeholder, onClick }: Button) {
     return (
         <>
-            <button>{ placeholder }</button>
+            <button onClick={onClick}>{ placeholder }</button>
         </>
     );
 }
