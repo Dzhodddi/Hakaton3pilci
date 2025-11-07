@@ -1,5 +1,5 @@
 :root {
-  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: Manrope, Helvetica, Arial, sans-serif;
 
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -9,6 +9,7 @@
 body {
   margin: 0;
   display: flex;
+  justify-content: center;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;

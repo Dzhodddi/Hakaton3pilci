@@ -10,7 +10,7 @@ function App() {
       <section>
         <div className="header">
           <p>Created for workers by workers</p>
-          <img className="logoPlaceholder" src="./logo.png"></img>
+          <img className="logo" src="./logo.png"></img>
           <button>Log in</button>
         </div>
         <div className="base">
