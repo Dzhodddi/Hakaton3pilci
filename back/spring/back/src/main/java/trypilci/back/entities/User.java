@@ -11,6 +11,7 @@ import org.springframework.lang.NonNull;
 @Table(name = "users")
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -27,5 +28,16 @@ public class User {
     @Size(max = 50)
     private String lastName;
 
+    @Size(max = 100)
+    private String occupation;
+
+    @Size(max = 100)
+    private String education;
+
+    @Size(max = 300)
+    private String experience;
+
+    @Size(max = 300)
+    private String skills;
 
 }
