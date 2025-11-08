@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import trypilci.back.entities.QuestionEntity;
 import trypilci.back.repositories.QuestionRepository;
+import trypilci.back.security.AdminOnly;
 
 import java.io.InputStreamReader;
 import java.util.List;
@@ -28,6 +29,7 @@ public class QuestionController {
         return ResponseEntity.ok(questionRepository.findRandom5Questions());
     }
 
+    @AdminOnly
     @PostMapping
     public ResponseEntity<QuestionEntity> reloadQuestions() {
         questionRepository.deleteAll();
