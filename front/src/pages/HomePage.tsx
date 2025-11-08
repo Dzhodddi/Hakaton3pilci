@@ -80,7 +80,7 @@ export default function HomePage() {
           </h1>
           <PromptInput 
             placeholder="Enter your profession or background to generate a new fascinating CV..."
-            onChange={(e) => setInputText(e.target.value)} value={undefined}          />
+            onChange={(e) => setInputText(e.target.value)} value={undefined} />
           <p className='description'>
             Say no more to frustration over writing a new CV
           </p>
