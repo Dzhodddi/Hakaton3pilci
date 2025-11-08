@@ -3,6 +3,7 @@ import ProfileTab from "../components/profile-tab/ProfileTab";
 import InstancesTab from "../components/instance-tab/InstancesTab";
 import TrainingTab from "../components/training-tab/TrainingTab";
 import "./UserProfile.css"
+import Header from "../components/Header";
 
 
 // @ts-ignore
@@ -13,14 +14,15 @@ enum Tabs {
 }
 
 const ProfileDashboard: React.FC = () => {
+    function empty() {
+        console.log("empty");
+    }
+
     const [activeTab, setActiveTab] = useState<Tabs>(Tabs.Profile);
 
     return (
         <div className="dashboard-container">
-            <div className="dashboard-header">
-                <p className="dashboard-header-text">Created for workers by workers</p>
-                <button className="logout-btn">Log out</button>
-            </div>
+            <Header handler={empty} isLogged={true} />
 
             <div className="dashboard-tabs">
                 {Object.values(Tabs).map((tab) => (

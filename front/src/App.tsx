@@ -14,13 +14,13 @@ interface ProtectedRouteProps {
     children: JSX.Element;
 }
 
-function ProtectedRoute({ children }: ProtectedRouteProps) {
-    const { user } = useAuth();
-    if (!user) {
-        return <Navigate to="/login" replace />;
-    }
-    return children;
-}
+// function ProtectedRoute({ children }: ProtectedRouteProps) {
+//     const { user } = useAuth();
+//     if (!user) {
+//         return <Navigate to="/login" replace />;
+//     }
+//     return children;
+// }
 
 function App() {
   return (
@@ -31,9 +31,9 @@ function App() {
             <Route
                 path='/profile'
                 element={
-                    <ProtectedRoute>
+                    // <ProtectedRoute>
                         <UserProfilePage />
-                    </ProtectedRoute>
+                    // </ProtectedRoute>
                 }
             />
             <Route path='*' element={<Navigate to='/' replace />} />
