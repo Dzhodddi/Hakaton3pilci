@@ -1,6 +1,5 @@
 services:
   prompt-service:
-    image: dzhodi/prompt-service:latest
     build:
       context: .
       dockerfile: ./prompt/deployment/Dockerfile
@@ -10,7 +9,6 @@ services:
       - "8000:8000"
 
   oauth:
-    image: dzhodi/oauth:latest
     build:
       context: ./oauth
       dockerfile: ./Dockerfile
@@ -20,7 +18,6 @@ services:
       - "3000:3000"
 
   spring:
-    image: dzhodi/spring:latest
     build:
       context: ./back/spring/back
       dockerfile: ./Dockerfile

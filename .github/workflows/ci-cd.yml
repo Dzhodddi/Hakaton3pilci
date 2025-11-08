@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Create .env files from examples
+        run: |
+            find . -type f -name ".env.example" -exec sh -c 'cp "$1" "$(dirname "$1")/.env"' _ {} \;
+            echo "Successfully created .env files from examples."
+      - name: Build services
+        run: docker compose build
+
+      - name: Start services
+        run: docker compose up -d
+
+      - name: Run tests
+        run: |
+          echo "Waiting for services to start..."
+          sleep 10     
+          docker compose exec prompt-service pytest
+          echo "Add your test command above this line."
+
+      - name: Stop and remove services
+        if: always()
+        run: docker compose down
+
+  push-to-dockerhub:
+    needs: build-and-test
+
+
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Create .env files from examples
+        run: |
+          find . -type f -name ".env.example" -exec sh -c 'cp "$1" "$(dirname "$1")/.env"' _ {} \;
+          echo "Successfully created .env files from examples."
+
+      - name: Build images
+        run: docker compose build
+
+      - name: Push images to Docker Hub
+        run: docker compose push
