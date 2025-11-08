@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build services
+        run: docker-compose build
+
+      - name: Start services
+        run: docker-compose up -d
+
+      - name: Run tests
+        run: |
+          echo "Waiting for services to start..."
+          sleep 10     
+          echo "Add your test command above this line."
+
+      - name: Stop and remove services
+        if: always()
+        run: docker-compose down
