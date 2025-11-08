@@ -1,17 +1,31 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 
 import Header from '../components/Header';
 import { Step } from '../components/Step';
 import { PromptInput } from '../components/PromptInput';
 import { Button } from '../components/Button';
+import { useAuth } from "../context/auth_context";
 
 export default function CreateProfilePage() {
+    const { user } = useAuth();
+    const navigate = useNavigate();
+
+    // const [form, setForm] = useState({
+    //     name: "",
+    //     title: "",
+    //     description: "",
+    // });
+
+    async function handleSubmit(e: React.FormEvent) {
+        e.preventDefault();
+        navigate("/");
+    }
+
+    if (!user) return <p>Loading user info...</p>;
     function empty() {
         console.log("empty");
     }
 
-    const navigate = useNavigate();
 
     function cancelCreation() {
         navigate('/');
@@ -36,7 +50,7 @@ export default function CreateProfilePage() {
                     <PromptInput placeholder='Education' />
                     <PromptInput placeholder='Experience' />
                 </div>
-                <Button placeholder='Next' onClick={empty} />
+                <Button onClick={empty} children={<p>Next</p>} />
             </section>
         </>
     );
