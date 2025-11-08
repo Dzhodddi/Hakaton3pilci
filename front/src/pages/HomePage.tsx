@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Iridescence from '../components/Iridescence';
+
 import { Button } from '../components/Button';
 import { PromptInput } from '../components/PromptInput';
 import { SparkleIcon } from '../components/SparkleIcon';
@@ -55,6 +57,12 @@ export default function HomePage() {
 
   return (
     <>
+      <Iridescence
+        color={[1, 1, 1]}
+        mouseReact={false}
+        amplitude={0.1}
+        speed={1.0}
+      />
       <section id='base'>
         <Header handler={handlePopup} isLogged={isLogged}/>
         <div className="base">
@@ -68,11 +76,10 @@ export default function HomePage() {
           <p className='description'>
             Say no more to frustration over writing a new CV
           </p>
-          <Button disabled={loading || inputText.trim().length < 12} variant="solid" onClick={handleGenerate} color="primary" iconLeft={<SparkleIcon className="sparkle-icon"/>}>Generate</Button>
+          <Button disabled={loading || inputText.trim().length < 12} variant="solid" onClick={handleGenerate} color="neutral" iconLeft={<SparkleIcon className="sparkle-icon"/>}>Generate</Button>
           {!isValid && inputText.length > 0 && (
               <p style={{ color: "red" }}>Input must be at least 12 characters long.</p>
           )}
-          <p>Say no more to frustration over writing a new CV.</p>
           {prompt && (
               <CVTemplate response={prompt.response} ></CVTemplate>
           )}
