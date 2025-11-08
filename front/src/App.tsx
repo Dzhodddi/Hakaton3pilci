@@ -2,7 +2,6 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css'
 
 import HomePage from './pages/HomePage';
-import LoginPage from './pages/LoginPage';
 import CreateProfilePage from './pages/CreateProfilePage';
 import {AuthProvider, useAuth} from './context/auth_context';
 import UserProfilePage from "./pages/UserProfilePage.tsx";
@@ -28,7 +27,6 @@ function App() {
         <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/newprofile' element={<CreateProfilePage />} />
-            <Route path="/login" element={<LoginPage />} />
             <Route
                 path='/profile'
                 element={
