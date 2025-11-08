@@ -8,6 +8,10 @@ import { useAuth } from "../context/auth_context";
 import {createUser} from "../api/user_api.ts";
 import {useState} from "react";
 
+import { QuizStepper } from '../components/QuizStepper';
+
+import '../styles/CreateProfilePage.css';
+
 export default function CreateProfilePage() {
     const { user } = useAuth();
     const navigate = useNavigate();
@@ -62,13 +66,7 @@ export default function CreateProfilePage() {
         <>
             <section>
                 <Header handler={cancelCreation} isLogged={isLogged}/>
-            </section>
-            <section>
-                <div className="steps">
-                    <Step index={1} placeholder='Tell us about yourself' active={true} />
-                    <Step index={2} placeholder='Select your plan' active={false} />
-                    <Step index={3} placeholder='Payment' active={false} />
-                </div>
+                <QuizStepper currentStep={1} steps={["Tell us about yourself ", "-", "-"]} />
                 <div className="inputs">
                     <PromptInput
                         placeholder="First name"
@@ -96,7 +94,7 @@ export default function CreateProfilePage() {
                         onChange={e => handleChange("experience", e.target.value)}
                     />
                 </div>
-                <Button onClick={handleSubmit} children={<p>Next</p>} />
+                <Button className='submit' onClick={handleSubmit} children={<p>Next</p>} />
             </section>
         </>
     );

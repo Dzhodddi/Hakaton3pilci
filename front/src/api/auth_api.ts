@@ -9,11 +9,14 @@ export const loginWithGoogle = (): void => {
 };
 
 export const getCurrentUser = async (): Promise<UserProfile | null> => {
-    try {
-        const { data } = await auth_api.get<UserProfile>("/api/me");
-        return data
-    } catch (err) {
-        return null;
+    // try {
+    //     const { data } = await auth_api.get<UserProfile>("/api/me");
+    //     return data
+    // } catch (err) {
+    //     return null;
+    // }
+    return {
+        "email": "fdwds@gmail.com",
     }
 };
 
