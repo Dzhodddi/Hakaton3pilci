@@ -1,9 +1,10 @@
 .prompt-textarea-wrapper {
-  width: 380px;
+  width: 280px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 24px;
+  /* gap: 12px; */
+  margin-top: 12px;
+  margin-right: 24px;
 }
 
 .prompt-textarea-title {
