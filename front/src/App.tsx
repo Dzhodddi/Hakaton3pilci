@@ -8,6 +8,7 @@ import UserProfilePage from "./pages/UserProfilePage.tsx";
 import type {JSX} from "react";
 import EditInstancePage from './pages/EditInstancePage.tsx';
 import { QuizPage } from './pages/QuizPage.tsx';
+import Quiz from "./components/Quiz.tsx";
 
 
 
@@ -27,6 +28,7 @@ function App() {
   return (
     <AuthProvider>
         <Routes>
+            <Route path='/quiz' element={<Quiz />} />
             <Route path='/' element={<HomePage />} />
             <Route path='/newprofile' element={<CreateProfilePage />} />
             <Route

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/gorilla/pat"
 	"github.com/gorilla/sessions"
@@ -8,6 +9,7 @@ import (
 	"github.com/markbates/goth"
 	"github.com/markbates/goth/gothic"
 	"github.com/markbates/goth/providers/google"
+	"github.com/rs/cors"
 	"html/template"
 	"log"
 	"net/http"
@@ -18,19 +20,32 @@ import (
 func init() {
 	_ = godotenv.Load()
 }
+
+type UserProfile struct {
+	Email string `json:"email"`
+}
+
 func main() {
+	c := cors.New(cors.Options{
+		AllowedOrigins:   []string{os.Getenv("URL")},
+		AllowCredentials: true,
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowedHeaders:   []string{"*"},
+	})
 
 	log.Println("Starting server...")
+	const sessionName = "auth-session"
 	store := sessions.NewCookieStore([]byte(os.Getenv("SESSION_SECRET")))
+	store.Options = &sessions.Options{
+		Path:     "/",
+		HttpOnly: true,
+		MaxAge:   86400 * 7,
+	}
 	gothic.Store = store
 	goth.UseProviders(
 		google.New(os.Getenv("GOOGLE_KEY"), os.Getenv("GOOGLE_SECRET"), "http://localhost:3000/auth/google/callback"),
 	)
-	/*	conn, _ := openidConnect.New(os.Getenv("OPENID_CONNECT_KEY"), os.Getenv("OPENID_CONNECT_SECRET"), "http://localhost:3000/auth/openid-connect/callback", os.Getenv("OPENID_CONNECT_DISCOVERY_URL"))
-		if conn != nil {
-			goth.UseProviders(conn)
-		}
-	*/
+
 	m := map[string]string{
 		"google": "Google",
 	}
@@ -43,25 +58,61 @@ func main() {
 	providerIndex := &ProviderIndex{Providers: keys, ProvidersMap: m}
 
 	p := pat.New()
-	p.Get("/auth/{provider}/callback", func(res http.ResponseWriter, req *http.Request) {
 
+	p.Get("/api/me", func(res http.ResponseWriter, req *http.Request) {
+		session, err := store.Get(req, sessionName)
+		if err != nil {
+			http.Error(res, "Failed to get session", http.StatusInternalServerError)
+			return
+		}
+
+		email, ok := session.Values["email"].(string)
+		if !ok || email == "" {
+			http.Error(res, "Unauthorized", http.StatusUnauthorized)
+			return
+		}
+
+		user := UserProfile{
+			Email: email,
+		}
+
+		res.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(res).Encode(user)
+	})
+
+	p.Post("/api/logout", func(res http.ResponseWriter, req *http.Request) {
+		session, err := store.Get(req, sessionName)
+		if err != nil {
+			log.Printf("Error getting session on logout: %v", err)
+		}
+
+		session.Values["email"] = ""
+		session.Options.MaxAge = -1
+
+		err = session.Save(req, res)
+		if err != nil {
+			log.Printf("Error saving session on logout: %v", err)
+			http.Error(res, "Failed to logout", http.StatusInternalServerError)
+			return
+		}
+		res.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(res).Encode(map[string]bool{"success": true})
+	})
+
+	p.Get("/auth/{provider}/callback", func(res http.ResponseWriter, req *http.Request) {
 		user, err := gothic.CompleteUserAuth(res, req)
 		if err != nil {
 			fmt.Fprintln(res, err)
 			return
 		}
-		t, _ := template.New("foo").Parse(userTemplate)
-		t.Execute(res, user)
-	})
+		session, _ := store.Get(req, sessionName)
+		session.Values["email"] = user.Email
+		session.Save(req, res)
 
-	p.Get("/logout/{provider}", func(res http.ResponseWriter, req *http.Request) {
-		gothic.Logout(res, req)
-		res.Header().Set("Location", "/")
-		res.WriteHeader(http.StatusTemporaryRedirect)
+		http.Redirect(res, req, "http://localhost:5173/newprofile", http.StatusTemporaryRedirect)
 	})
 
 	p.Get("/auth/{provider}", func(res http.ResponseWriter, req *http.Request) {
-		// try to get the user without re-authenticating
 		if gothUser, err := gothic.CompleteUserAuth(res, req); err == nil {
 			t, _ := template.New("foo").Parse(userTemplate)
 			t.Execute(res, gothUser)
@@ -75,8 +126,9 @@ func main() {
 		t.Execute(res, providerIndex)
 	})
 
+	handler := c.Handler(p)
 	log.Println("listening on localhost:3000")
-	log.Fatal(http.ListenAndServe(":3000", p))
+	log.Fatal(http.ListenAndServe(":3000", handler))
 }
 
 type ProviderIndex struct {
@@ -89,7 +141,6 @@ var indexTemplate = `{{range $key,$value:=.Providers}}
 {{end}}`
 
 var userTemplate = `
-<p><a href="/logout/{{.Provider}}">logout</a></p>
 <p>Name: {{.Name}} [{{.LastName}}, {{.FirstName}}]</p>
 <p>Email: {{.Email}}</p>
 <p>NickName: {{.NickName}}</p>

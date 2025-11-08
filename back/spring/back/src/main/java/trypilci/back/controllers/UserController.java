@@ -3,12 +3,13 @@ package trypilci.back.controllers;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import trypilci.back.entities.User;
+import trypilci.back.entities.UserEntity;
+import trypilci.back.entities.UserView;
 import trypilci.back.services.UserService;
 
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -19,27 +20,26 @@ public class UserController {
     private final UserService userService;
 
 
-//    @GetMapping
-//    public List<User> getAllUsers() {
-//        return userService.findAll();
-//    }
-
+    @PreAuthorize("#email == authentication.name")
     @GetMapping("/{email}")
-    public ResponseEntity<User> getUser(@PathVariable String email) {
+    public ResponseEntity<UserEntity> getUser(@PathVariable String email) {
         return ResponseEntity.ok(userService.findByEmail(email));
     }
 
+    @PreAuthorize("#user.email == authentication.name")
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User created = userService.saveUser(user);
+    public ResponseEntity<UserEntity> createUser(@RequestBody UserView user) {
+        UserEntity created = userService.saveUser(user);
         return ResponseEntity.created(URI.create("/api/users/"+created.getEmail())).body(created);
     }
 
+    @PreAuthorize("#email == authentication.name")
     @PutMapping("/{email}")
-    public ResponseEntity<User> updateUser(@PathVariable String email, @RequestBody User user) {
+    public ResponseEntity<UserEntity> updateUser(@PathVariable String email, @RequestBody UserView user) {
         return ResponseEntity.ok(userService.updateUser(email, user));
     }
 
+    @PreAuthorize("#email == authentication.name")
     @DeleteMapping("/{email}")
     public ResponseEntity<Void> deleteUser(@PathVariable String email) {
             userService.delete(email);

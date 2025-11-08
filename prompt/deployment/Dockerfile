@@ -6,6 +6,8 @@ COPY ./prompt/requirements.txt ./app/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r ./app/requirements.txt
 
 COPY ./prompt/src /app/src
+COPY ./prompt/tests /app/tests
+
 
 EXPOSE 8000
 
