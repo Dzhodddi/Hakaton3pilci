@@ -61,6 +61,13 @@ export default function HomePage() {
     navigate('/newprofile');
   }
 
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   let isLogged = false;
   const isValid = inputText.trim().length >= 12
 
@@ -131,8 +138,9 @@ export default function HomePage() {
           <div className="prompt-wrap">
             <PromptInput 
             placeholder="Enter your profession or background to generate a new fascinating CV..."
-            onChange={(e) => setInputText(e.target.value)} value={undefined}          />
-            <Button variant='solid' color='secondary' iconLeft={<SparkleIcon />}>Generate</Button>
+            value={undefined}
+            />
+            <Button onClick={handleScrollToTop} variant='solid' color='secondary' iconLeft={<SparkleIcon />}>Generate</Button>
           </div>
           <p className='credits'>© 2025 3pilci Team</p>
         </div>
