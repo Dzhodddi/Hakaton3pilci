@@ -1,7 +1,9 @@
+import { Button } from "../components/Button";
 import { DashboardNav } from "../components/DashboardNavProps";
 import Header from "../components/Header";
 import { KeywordList } from "../components/KeywordList";
 import { PromptTextArea } from "../components/PromptTextArea";
+import { SparkleIcon } from "../components/SparkleIcon";
 
 import '../styles/EditInstancePage.css'
 
@@ -25,14 +27,19 @@ export default function EditInstancePage() {
                 </div>
                 <div className="wrapper">
                     <div className="prompt-inputs">
-                        <PromptTextArea id="Skills" title="Skills" placeholder="Enter more details about your skills (ex. React proficiency, Communication, etc.)..." />
-                        <PromptTextArea id="Experience" title="Experience" placeholder="Enter more details about your skills (ex. React proficiency, Communication, etc.)..." />
-                        <PromptTextArea id="Education" title="Education" placeholder="Enter more details about your skills (ex. React proficiency, Communication, etc.)..." />
-                        <PromptTextArea id="Additional" title="Additional" placeholder="Enter more details about your skills (ex. React proficiency, Communication, etc.)..." />
+                        <PromptTextArea id="Skills" title="Skills" placeholder="Enter more details about your skills" />
+                        <PromptTextArea id="Experience" title="Experience" placeholder="Enter more details about your skills" />
+                        <PromptTextArea id="Education" title="Education" placeholder="Enter more details about your skills" />
+                        <PromptTextArea id="Additional" title="Additional" placeholder="Enter more details about your skills" />
                     </div>
                     <div className="cv-check">
-                        
+
                     </div>
+                </div>
+                <div className="btn-wrap">
+                    <Button>Save</Button>
+                    <Button variant="outline" color="secondary" iconLeft={<SparkleIcon />}>ReGenerate</Button>
+                    <Button variant="outline" color="secondary">Export PDF</Button>
                 </div>
             </section>
         </>

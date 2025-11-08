@@ -1,34 +1,22 @@
 .dashboard-container {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    min-height: 100vh;
-    padding: 20px 40px;
+    height: 100vh;
+    width: 92%;
+    overflow: hidden;
 }
 
-.dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-}
-
-.dashboard-header-text {
-    font-size: 14px;
-    color: #666;
-}
-
-.logout-btn {
+.dashboard-container button {
     background: none;
     border: none;
     font-weight: 600;
     cursor: pointer;
+    color: #292828;
 }
 
 .dashboard-tabs {
     display: flex;
     gap: 10px;
-    margin-bottom: 30px;
+    margin-top: 24px;
+    margin-bottom: 24px;
 }
 
 .tab-button {

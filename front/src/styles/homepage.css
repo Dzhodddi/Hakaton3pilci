@@ -5,6 +5,10 @@
   width: 92%;
 }
 
+.header button {
+  color: #FFF;
+}
+
 .base {
   display: flex;
   flex-direction: column;
@@ -21,9 +25,90 @@
     font-size: 28px;
 }
 
-.base button {
-  color: #A51BFB;
+
+#second {
+  position: absolute;
+  top: 70%;
+  background: #FFF;
+  height: 100vh;
+  width: 100%;
+  z-index: 2;
 }
-.base span {
-  color: #A51BFB;
+
+.second-wrap, .third-wrap {
+  margin-top: 81px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.second-wrap h1, .third-wrap h1, .fourth-wrap h1 {
+  font-size: 44px;
+}
+
+.feature-list {
+  display: flex;
+  gap: 64px;
+  margin-top: 96px;
+}
+
+.feature-explain {
+  font-size: 24px;
+  margin-top: 44px;
+}
+
+#third {
+  position: absolute;
+  top: 170%;
+  height: 100vh;
+  width: 100%;
+  z-index: 3;
+}
+
+.third-wrap {
+  margin-top: 0;
+}
+
+.panel-wrapper {
+  width: 80%;
+  height: 280px;
+  background-color: black;
+  border-radius: 18px;
+  padding: 16px 24px;
+  margin-top: 96px;
+  position: relative;
+}
+
+#fourth {
+  position: absolute;
+  top: 260%;
+  height: 330px;
+  width: 92%;
+  z-index: 3;
+}
+
+.fourth-wrap {
+  display: flex;
+  flex-direction: column;
+}
+.fourth-wrap h1 {
+  color: #FFF;
+}
+
+.prompt-wrap {
+  margin-top: 44px;
+}
+.prompt-wrap button {
+  margin-left: 44px;
+}
+
+.fourth-wrap button {
+  background-color: #fff;
+}
+
+.credits {
+  color: #FFF;
+  font-size: 20px;
+  opacity: 50%;
+  position: absolute;
+  bottom: -90%;
 }

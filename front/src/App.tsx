@@ -7,6 +7,7 @@ import {AuthProvider, useAuth} from './context/auth_context';
 import UserProfilePage from "./pages/UserProfilePage.tsx";
 import type {JSX} from "react";
 import EditInstancePage from './pages/EditInstancePage.tsx';
+import { QuizPage } from './pages/QuizPage.tsx';
 
 
 
@@ -14,13 +15,13 @@ interface ProtectedRouteProps {
     children: JSX.Element;
 }
 
-function ProtectedRoute({ children }: ProtectedRouteProps) {
-    const { user } = useAuth();
-    if (!user) {
-        return <Navigate to="/login" replace />;
-    }
-    return children;
-}
+// function ProtectedRoute({ children }: ProtectedRouteProps) {
+//     const { user } = useAuth();
+//     if (!user) {
+//         return <Navigate to="/login" replace />;
+//     }
+//     return children;
+// }
 
 function App() {
   return (
@@ -31,13 +32,14 @@ function App() {
             <Route
                 path='/profile'
                 element={
-                    <ProtectedRoute>
+                    // <ProtectedRoute>
                         <UserProfilePage />
-                    </ProtectedRoute>
+                    // </ProtectedRoute>
                 }
             />
             <Route path='*' element={<Navigate to='/' replace />} />
             <Route path='/editinstance' element={<EditInstancePage />} />
+            <Route path='/quiz' element={<QuizPage />} />
         </Routes>
     </AuthProvider>
     );
