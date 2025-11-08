@@ -6,6 +6,7 @@ import CreateProfilePage from './pages/CreateProfilePage';
 import {AuthProvider, useAuth} from './context/auth_context';
 import UserProfilePage from "./pages/UserProfilePage.tsx";
 import type {JSX} from "react";
+import EditInstancePage from './pages/EditInstancePage.tsx';
 
 
 
@@ -36,6 +37,7 @@ function App() {
                 }
             />
             <Route path='*' element={<Navigate to='/' replace />} />
+            <Route path='/editinstance' element={<EditInstancePage />} />
         </Routes>
     </AuthProvider>
     );

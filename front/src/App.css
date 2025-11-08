@@ -8,3 +8,11 @@
 h1, h2, h3, p {
   margin: 0;
 }
+
+.dashboard {
+  width: 92%;
+  overflow: hidden;
+}
+.dashboard .header button {
+  color: #0E0D0F;
+}

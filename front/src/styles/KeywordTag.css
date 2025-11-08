@@ -1,0 +1,27 @@
+.keyword-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  background-color: #f3f4f6;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #1C1A1C;
+  border: none;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.keyword-tag--add {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.keyword-tag--add:hover {
+  background-color: #e5e7eb;
+}

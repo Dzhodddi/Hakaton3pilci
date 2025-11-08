@@ -14,7 +14,7 @@ export default function Header({ handler, isLogged }: { handler: () => void, isL
         <>
             <div className="header">
                 <p>Created for workers by workers</p>
-                <img className="logo" src="./logo.png"></img>
+                <img className="logo" src="./Logo.svg"></img>
                 {button}
             </div>
         </>

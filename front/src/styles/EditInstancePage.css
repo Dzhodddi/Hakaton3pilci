@@ -1,0 +1,23 @@
+.keywords {
+    margin-top: 24px;
+}
+
+.naming {
+    font-size: 20px;
+}
+
+.prompt-inputs {
+    display: flex;
+    max-width: 70%;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.cv-check {
+    width: 50%;
+    height: 100%;
+}
