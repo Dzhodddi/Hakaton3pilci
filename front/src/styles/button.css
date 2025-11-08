@@ -71,7 +71,7 @@
 .btn--solid.btn--primary:hover:not(:disabled) {
   background-color: var(--color-primary-hover);
   border-color: var(--color-primary-hover);
-  transform: translateY(-2px);
+  /* transform: translateY(-2px); */
 }
 
 .btn--solid.btn--secondary {
@@ -87,7 +87,7 @@
   box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4),
     inset 0px -4px 0px 0px rgba(0, 0, 0, 0.2),
     0px 0px 0px 4px rgba(255, 255, 255, 0.2), 0px 0px 180px 0px #9917ff;
-  transform: translateY(-2px);
+  /* transform: translateY(-2px); */
   color: var(--color-text-light);
   border-color: transparent;
 }
@@ -111,7 +111,7 @@
 .btn--outline.btn--secondary:hover:not(:disabled) {
   background-color: var(--color-secondary);
   color: var(--color-text-light);
-  transform: translateY(-2px);
+  /* transform: translateY(-2px); */
 }
 .btn--outline.btn--secondary:hover:not(:disabled) .btn-icon svg {
   fill: var(--color-text-light);
@@ -127,16 +127,8 @@
 .btn--outline.btn--neutral:hover:not(:disabled) {
   background-color: var(--color-neutral);
   color: var(--color-text-light);
-  transform: translateY(-2px);
+  /* transform: translateY(-2px); */
 }
 .btn--outline.btn--neutral:hover:not(:disabled) .btn-icon svg {
   fill: var(--color-text-light);
-}
-
-.btn:hover:not(:disabled) .sparkle-icon {
-  transform: scale(1.2);
-}
-
-.btn:hover:not(:disabled) .arrow-icon {
-  transform: translateX(4px);
 }

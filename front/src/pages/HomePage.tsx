@@ -1,30 +1,24 @@
-import { useRef } from 'react'
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Button } from '../components/Button'
-import { PromptInput } from '../components/PromptInput'
+import { Button } from '../components/Button';
+import { PromptInput } from '../components/PromptInput';
 import { SparkleIcon } from '../components/SparkleIcon';
 import Header from '../components/Header';
+import { LoginPopup } from '../components/LoginPopup';
 
-import '../styles/homepage.css'
+import '../styles/homepage.css';
 
 export default function HomePage() {
-    const dialogRef = useRef<HTMLDialogElement>(null);
   
-  function empty() {
-    console.log("empty");
-  }
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   function handlePopup() {
-    if (dialogRef.current) {
-      dialogRef.current.showModal();
-    }
+    setIsPopupOpen(true);
   }
 
   function handleClosePopup() {
-    if (dialogRef.current) {
-      dialogRef.current.close();
-    }
+    setIsPopupOpen(false);
   }
 
   const navigate = useNavigate();
@@ -53,14 +47,12 @@ export default function HomePage() {
         </div>
       </section>
       <section>
-        <dialog className="login-popup" ref={dialogRef}>
-          <Button placeholder="X" onClick={handleClosePopup} />
-          <h3>
-            Log in using your Google account
-          </h3>
-          <Button placeholder="Google OAuth" onClick={skipLogin} />
-        </dialog>
+        <LoginPopup 
+          isOpen={isPopupOpen}
+          onClose={handleClosePopup}
+          onGoogleLogin={skipLogin} 
+        />
       </section>
     </>
-  )
+  );
 }
