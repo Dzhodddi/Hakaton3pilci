@@ -1,0 +1,93 @@
+.profile-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.profile-card {
+    background: #f2f2f2;
+    border-radius: 8px;
+    padding: 20px;
+    flex: 1 1 250px;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #aaa;
+    margin-bottom: 15px;
+}
+
+.profile-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.profile-desc {
+    font-size: 14px;
+    color: #777;
+}
+
+.profile-right {
+    flex: 3;
+    min-width: 300px;
+}
+
+.profile-box {
+    background: #f2f2f2;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+}
+
+.placeholder {
+    height: 20px;
+    width: 70%;
+    background-color: #bdbdbd;
+    border-radius: 7px;
+    margin-bottom: 7px;
+    padding: 5px;
+}
+
+.profile-section {
+    margin-bottom: 25px;
+}
+
+.profile-section-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.profile-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.profile-tag {
+    background-color: #eee;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 13px;
+    border: none;
+}
+
+.profile-tag.add {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.delete-btn {
+    background-color: #e6e6e6;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 20px;
+    cursor: pointer;
+    font-weight: 500;
+}
