@@ -3,6 +3,7 @@ package trypilci.back;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import trypilci.back.entities.CvEntity;
 import trypilci.back.entities.UserEntity;
 import trypilci.back.repositories.CvRepository;
@@ -12,6 +13,7 @@ import trypilci.back.repositories.UserRepository;
 public class Config {
 
     @Bean
+    @Profile("h2")
     CommandLineRunner dbPopulator(UserRepository userRepository, CvRepository cvRepository) {
         return args -> {
           UserEntity userEntity = new UserEntity();
