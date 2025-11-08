@@ -1,11 +1,11 @@
 package trypilci.back.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.hibernate.validator.constraints.UniqueElements;
-import org.springframework.lang.NonNull;
+
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -14,13 +14,14 @@ import org.springframework.lang.NonNull;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.UUID)
-//    private Long id;
+public class UserEntity {
 
     @Id
     private String email;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnore
+    List<CvEntity> cvs;
 
     @Size(max = 50)
     private String firstName;
