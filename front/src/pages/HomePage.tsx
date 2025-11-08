@@ -3,7 +3,10 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../components/Button'
 import { PromptInput } from '../components/PromptInput'
+import { SparkleIcon } from '../components/SparkleIcon';
 import Header from '../components/Header';
+
+import '../styles/homepage.css'
 
 export default function HomePage() {
     const dialogRef = useRef<HTMLDialogElement>(null);
@@ -34,19 +37,19 @@ export default function HomePage() {
 
   return (
     <>
-      <section>
+      <section id='base'>
         <Header handler={handlePopup} isLogged={isLogged}/>
         <div className="base">
           <h1>
-            Elevate your job experience with *company*
+            Level up your CV with zeroka.ai
           </h1>
           <PromptInput 
             placeholder="Enter your profession or background to generate a new fascinating CV..."
           />
-          <p>
-            Say no more to frustration over writing a new CV.
+          <p className='description'>
+            Say no more to frustration over writing a new CV
           </p>
-          <Button placeholder="Generate" onClick={empty} />
+          <Button variant="solid" color="primary" iconLeft={<SparkleIcon className="sparkle-icon" />}>Generate</Button>
         </div>
       </section>
       <section>

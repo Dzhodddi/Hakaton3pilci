@@ -1,0 +1,18 @@
+.prompt-input {
+  width: 60%;
+  padding: 20px 30px;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+  outline: none;
+  box-sizing: border-box;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.prompt-input::placeholder {
+  color: #b0b0b0;
+}

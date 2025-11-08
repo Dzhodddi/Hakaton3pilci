@@ -1,8 +1,16 @@
-export function PromptInput({ placeholder }: { placeholder: string }) {
-    return (
-        <>
-            <input></input>
-            <p>{ placeholder }</p>
-        </>
-    );
+import React from 'react';
+import '../styles/PromptInput.css';
+
+interface PromptInputProps {
+  placeholder: string;
+}
+
+export function PromptInput({ placeholder }: PromptInputProps) {
+  return (
+    <input
+      type="text"
+      className="prompt-input"
+      placeholder={placeholder}
+    />
+  );
 }
