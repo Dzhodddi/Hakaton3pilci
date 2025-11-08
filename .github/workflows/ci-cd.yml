@@ -51,6 +51,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Create .env files from examples
+        run: |
+          find . -type f -name ".env.example" -exec sh -c 'cp "$1" "$(dirname "$1")/.env"' _ {} \;
+          echo "Successfully created .env files from examples."
+
       - name: Build images
         run: docker compose build
 
