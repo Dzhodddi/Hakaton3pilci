@@ -4,11 +4,11 @@
   --color-primary-hover: #381039;
   --color-secondary: #683FEA;
   --color-secondary-hover-gradient: linear-gradient(0deg, #A47CF3, #683FEA);
-  --color-neutral: #1C1A1C; 
+  --color-neutral: #fff; 
   --color-neutral-hover: #333333;
   --color-text-light: #FFFFFF;
   --color-text-dark: #1C1A1C;
-  --color-text-muted: #AAAAAA;
+  --color-text-muted: #683FEA;
 }
 
 .btn {

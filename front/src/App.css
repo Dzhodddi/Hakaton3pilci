@@ -3,6 +3,9 @@
   height: 100vh;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  color: #0E0D0F;
 }
 
 h1, h2, h3, p {

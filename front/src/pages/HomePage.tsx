@@ -12,6 +12,15 @@ import { LoginPopup } from '../components/LoginPopup';
 import '../styles/homepage.css';
 import {getShortPrompt, type PromptResponse} from "../api/prompt_api.ts";
 import {CVTemplate} from "../components/CVTemplate.tsx";
+import { FeatureCard } from '../components/FeatureCard.tsx';
+
+import Vector1 from '../assets/Vector-1.png';
+import Vector2 from '../assets/Vector-2.png';
+import Vector3 from '../assets/Vector-3.png';
+
+import DotGrid from '../components/DotGrid.tsx';
+import { AnimatedTextSlider } from '../components/AnimatedTextSlider.tsx';
+import DarkVeil from '../components/DarkVeil.tsx';
 
 export default function HomePage() {
   
@@ -71,12 +80,11 @@ export default function HomePage() {
           </h1>
           <PromptInput 
             placeholder="Enter your profession or background to generate a new fascinating CV..."
-            onChange={(e) => setInputText(e.target.value)}
-          />
+            onChange={(e) => setInputText(e.target.value)} value={undefined}          />
           <p className='description'>
             Say no more to frustration over writing a new CV
           </p>
-          <Button disabled={loading || inputText.trim().length < 12} variant="solid" onClick={handleGenerate} color="neutral" iconLeft={<SparkleIcon className="sparkle-icon"/>}>Generate</Button>
+          <Button variant="solid" onClick={handleGenerate} color="secondary" iconLeft={<SparkleIcon className="sparkle-icon"/>}>Generate</Button>
           {!isValid && inputText.length > 0 && (
               <p style={{ color: "red" }}>Input must be at least 12 characters long.</p>
           )}
@@ -91,6 +99,43 @@ export default function HomePage() {
           onClose={handleClosePopup}
           onGoogleLogin={skipLogin} 
         />
+      </section>
+      <section id='second'>
+          <div className="second-wrap">
+            <h1>What is zeroka?</h1>
+            <div className="feature-list">
+              <FeatureCard text='Helps you achieve 
+  your dream career goals' icon={Vector1} />
+              <FeatureCard text='Powered by latest 
+  models of Artificial Intelligence' icon={Vector2} />
+              <FeatureCard text='Boosts your CVs
+  up to the unseen heights' icon={Vector3} />
+            </div>
+            <p className='feature-explain'>Our team put dedication to create service which helps you become better</p>
+          </div>
+      </section>
+      <section id="third">
+        <div className="third-wrap">
+          <h1>How it works?</h1>
+          <div className="panel-wrapper">
+            <DotGrid />
+            <AnimatedTextSlider phrases={["Prompt occupation", "Get generated CV", "Improve with prompts"]} />
+          </div>
+          <p className='feature-explain'>Simple process yet impressive result just for you</p>
+        </div>
+      </section>
+      <DarkVeil />
+      <section id="fourth">
+        <div className="fourth-wrap">
+          <h1>Try it out yourself for free</h1>
+          <div className="prompt-wrap">
+            <PromptInput 
+            placeholder="Enter your profession or background to generate a new fascinating CV..."
+            onChange={(e) => setInputText(e.target.value)} value={undefined}          />
+            <Button variant='solid' color='secondary' iconLeft={<SparkleIcon />}>Generate</Button>
+          </div>
+          <p className='credits'>© 2025 3pilci Team</p>
+        </div>
       </section>
     </>
   );

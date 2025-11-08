@@ -7,6 +7,7 @@ import {AuthProvider, useAuth} from './context/auth_context';
 import UserProfilePage from "./pages/UserProfilePage.tsx";
 import type {JSX} from "react";
 import EditInstancePage from './pages/EditInstancePage.tsx';
+import { QuizPage } from './pages/QuizPage.tsx';
 
 
 
@@ -38,6 +39,7 @@ function App() {
             />
             <Route path='*' element={<Navigate to='/' replace />} />
             <Route path='/editinstance' element={<EditInstancePage />} />
+            <Route path='/quiz' element={<QuizPage />} />
         </Routes>
     </AuthProvider>
     );

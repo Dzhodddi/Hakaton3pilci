@@ -1,0 +1,38 @@
+.feature-card {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 36px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) inset;
+  border-radius: 18px;
+  background-color: #f9f9f9;
+}
+
+.feature-card-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #b0b0b0;
+  text-align: center;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.feature-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-card-icon svg {
+  width: 120px;
+  height: 120px;
+}
+
+.feature-card-icon img {
+  max-width: 120px;
+  height: auto;
+}
