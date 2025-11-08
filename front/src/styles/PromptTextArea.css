@@ -1,0 +1,37 @@
+.prompt-textarea-wrapper {
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.prompt-textarea-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1C1A1C;
+  padding-left: 4px;
+}
+
+.prompt-textarea-input {
+  background-color: #F4F4F4;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) inset;
+
+  width: 100%;
+  padding: 20px;
+  
+  font-family: inherit;
+  font-size: 1rem;
+  color: #333;
+  
+  outline: none;
+  box-sizing: border-box;
+  resize: none;
+  height: 100px;
+}
+
+.prompt-textarea-input::placeholder {
+  color: #b0b0b0;
+}
