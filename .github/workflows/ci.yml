@@ -15,15 +15,16 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build services
-        run: docker-compose build
+        run: docker compose build
 
       - name: Start services
-        run: docker-compose up -d
+        run: docker compose up -d
 
       - name: Run tests
         run: |
           echo "Waiting for services to start..."
           sleep 10     
+          docker exec prompt-service pytest
           echo "Add your test command above this line."
 
       - name: Stop and remove services
